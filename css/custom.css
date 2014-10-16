@@ -1,96 +1,323 @@
-/* 
+/* Unified Style Draft - Blue header, tight square elements */
 
-Primary Color:
-#3f51b5
-rgba(63,81,181, 0.3);
+.soProContainer{
+  border-top: 20px solid blue;
+  margin-top: 0px;
+  padding-bottom: 5px;
+  min-height: 40px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+}
+.soProContainer .whiteTitle{
+  color: white;
+  margin-top: -20px;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+}
+.soProContainer .whiteTitleText{
+  color: white;
+  margin-top: -20px;
+  font-family: Arial, sans-serif;
+  float: right;
+}
+.soProContainer .whiteTitleText:after{
+  content: '';
+  display: block;
+  clear: both;
+}
 
-Accent Color:
-#ff5722
-rgba(255,87,34, 0.3);
+/* Miscellaneous app-wide styles: */
 
-*/
+button {
+	margin-left: .5em;
+}
+
+.navButtons {
+	float: right;
+}
+
+.clearBoth {
+	display: block;
+	clear: both;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.cambrianWell {
+	border: 1px solid black;
+	margin: 10px 0px;
+	padding: 8px;
+	background-color: #eee;
+}
+
+.cambrianModalWell {
+  border: 1px solid black;
+  margin: 10px;
+  padding: 8px;
+  background-color: #eee;
+}
+
+.cambrianAntiWell {
+	border: 1px solid black;
+	margin: 10px 0px;
+	padding: 8px;
+	background-color: #fff;
+}
+
+.nav-tabs li,
+.copyPollButton,
+.deletePollButton {
+	cursor: pointer;
+}
 
 
 
-body{
+/* Style some bootstrap labels to fill their columns: */
+#pollsFromRecentContainer .label,
+.pollEntryContainer .label
+{
+  display: block;
+}
+
+/* Styles for pollListings */
+
+.pollEntryContainer {
+	border: 1px solid black;
+	margin: 10px 0px;
+	padding: 8px;
+	background-color: #eee;
+}
+
+.pollTitle {
+	font-size: 20px;
+}
+
+.poll-btn-group {
+	height: 68px;
+	position: relative;
+}
+
+.template-btn-group {
+	position: absolute;
+	bottom: 0;
+}
+
+.copyPollButton {
+	margin-right: 5px;
+}
+
+#pollsListHeader {
+	border: 1px solid lightgrey;
+	background-color: orange;
+	text-align: center;
+	font-size: 33px;
+}
+
+/* Styles for targetSelection */
+#targetPaneTabs{
+  padding-top: 24px;
+}
+
+.targetTab{
+  position: relative;
+  line-height: 24px;
+  font-size: 20px;
+  height: 24px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 20px;
+  cursor: pointer;
+}
+.targetTab .fa{
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 5px 0 0;
+}
+.targetTab.targeting{
+  background-color: #777777;
+}
+#targetSelectionContainer{
+  min-height: 140px;
+}
+#targetPaneList{
+  background-color: #777777;
+  padding-top: 0;
+  padding-bottom: 20px;
+  color: white;
+}
+#targetPaneList select{
+  width: 100%;
+  display: block;
+  color: black;
+}
+
+/* Styles for customizePoll */
+#pollSaveWidget{
+  width: 20em;
+  margin: auto;
+  padding: 10px 20px 0 20px;
+  border: 1px solid black;
+}
+#pollSaveWidget h4{
+  display: inline-block;
+  position: absolute;
+  background-color: white;
+  margin-top: -20px;
+  margin-left: 8px;
+}
+#pollSaveWidget input[checkbox]{
+  display: inline-block; 
+}
+#pollSaveWidget label{
+  display: block;
+}
+#pollSaveButton{
+  display: block;
+  margin: 0 auto 5px auto;
+}
+.greyedOut, .grayedOut{
+  color: #777777;
+}
+
+/* Styles for pollResults */
+
+#ballotView {
+	margin-top: 40px;
+}
+
+#pollStatus {
+	margin-top: 24px;
+	margin-bottom: 10px;
+}
+
+#resultsChart {
+	display: block;
+	height: 300px;
+	width: 100%;
+}
+
+.resultsTable {
+	width: 100%;
+	border: 1px solid lightgrey;
+	margin-bottom: 10px;
+	background-color: #fff;
+}
+
+.resultsTable tr td:first-child {
+	border-left: 0;
+}
+
+.commentsTable {
+	width: 100%;
+	border: 1px solid lightgrey;
+	background-color: #fff;
+}
+
+.commentsTable thead {
+	display: block;
+}
+
+.commentsTable tbody {
+	height: 200px;
+	overflow-y:scroll;
+	display: block;
+}
+
+.resultsTable td,
+.commentsTable td,
+.commmentsTable th {
+	padding: 8px;
+	border: 1px solid black;
+}
+
+.resultsTable tr:first-child td,
+.commentsTable tr:first-child th {
+	border-top: 0;
+}
+
+.resultsTable tr:last-child td,
+.commentsTable tr:last-child td {
+	border-bottom: 0;
+}
+
+.commentsTable tr td:first-child,
+.commentsTable tr th:first-child {
+	border-left: 0;
+}
+
+.fromCol {
+	width: 100px;
+}
+
+.resultsTable tr td:last-child,
+.commentsTable tr td:last-child,
+.commentsTable tr th:last-child {
+	border-right: 0;
+	width: 50px;
+}
+
+.commentsTable tr td:last-child {
+	width: 70px;
+}
+
+/* Styles for Help Modal */
+
+.help-label {
+  width: 100px;
+  text-align: center;
+}
+
+.indent1 {
+  margin-left: 25px;
+}
+
+.indent2 {
+  margin-left: 50px;
+}
+
+/* Animations */
+.animate-show {
+  line-height:20px;
+  opacity:1;
+  padding: 10px 0px 0px 0px;
+  background:white;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
+}
+
+/* Styles for material UX */
+material-sidenav {
+  max-width: 175px;
+  min-width: 175px;
   overflow: hidden;
 }
-
-/*  TODO: Make left nav togglable on md+ screens. Our local copy  of angular-
-material.css has the offending sidenav mediaquery removed, but it will return
-when compiled until we fork sidenav. 
-See: https://github.com/angular/material/blob/master/src/components/sidenav/_sidenav.scss#L44 
-*/
-
-material-card.groupCard{
-  background-color: lightgreen;
+.color-chip {
   display: inline-block;
-  min-height: 100px;
-  max-width: 300px;
-  min-width: 300px;
-  padding: 16px 16px 0 16px;
+  border: 1px solid grey;
+  min-width: 12px;
+  min-height: 12px;
+  margin: 2px;
 }
 
-material-card.groupCard h3{
-  min-height: 28px;
-  line-height: 28px;
-  margin: 0;
-  padding: 0;
-}
-
-material-card.groupCard span.groupType{
-  text-transform:capitalize;
-}
-
-.cardMenuBar{
-  visibility: hidden;
-}
-
-.cardholder:hover .cardMenuBar{
-  visibility: visible; 
-}
-
-.overflowMenuButton{
-  /* Brute force vertical align of 18px img in 24px cardMenuBar */
-  margin-top: 4px;
-}
-.lightDetails {
-  opacity: 0.4;
-  margin-bottom: 4px;
-}
-.lightDetails span{
-  line-height: 18px;
-  height: 18px;
-  margin: 0;
-  padding: 0;
-} 
-.lightDetails img{
-  line-height: 18px;
-  height: 18px;
-  margin: 0;
-  padding: 0;
-}
-.lightDetails span.groupMemberLength{
-  margin-left: 8px;
-  text-align: right;
-  font-size: 14px;
-}
-
-/*
-.groupCount {
-  float: right;
-  vertical-align: top;
-}
-*/
-/* end material-card styles */
-
-core-icon-button:focus{
-  background-color: rgba(0,0,0,0.54);
-}
-
-#titleText {
-  float: left;
-  vertical-align: middle;
+.menu-icon {
+  top: 0;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 #viewButtons {
@@ -98,7 +325,6 @@ core-icon-button:focus{
 }
 
 .viewButton {
-  border: 1px solid rgba(0,0,0,0.2);
   height: 48px;
   width: 53px;
 }
@@ -109,42 +335,41 @@ core-icon-button:focus{
   opacity: 0.5;
 }
 
-.menu-icon {
-  top: 0;
-  cursor: pointer;
+.menuDrawerButton {
+  border: 1px solid rgba(0,0,0,0.2);
+}
+.menuDrawerButton.active {
+  background-color: rgba(0,0,0,0.1);
+}
+.menuDrawerButton.inactive {
+  opacity: 0.5;
 }
 
-.mainTitle {
-  width: 100%;
-}
-
-.clearBoth {
-  clear: both;
+#quilt {
+  vertical-align: top;
 }
 
 .content-padding {
+  padding-top: 24px;
   padding: 20px;
+  height: 95%;
+  padding-right: 5px;
 }
 
-.groupListsContainer {
-  /* height: 100vh; */
-}
-#quiltContainer > * {
-  vertical-align: top;
+.bold {
+  font-weight: bold;
 }
 
 #quickAddBox {
   border: 1px solid lightgrey;
   display: block;
   position: relative;
-  max-width: 500px;
-  margin: auto;
+  max-width: 612px;
+  width: 612px;
   box-sizing: border-box;
   padding: 8px;
   line-height: 24px;
-  background-color: rgba(255,255,255,0.9);
-  margin-top: 4px;
-  margin-bottom: 14px;
+  background-color: white;
 }
 
 #quickAddTitle {
@@ -153,11 +378,7 @@ core-icon-button:focus{
   font-size: 14px;
 }
 
-#quickAddAdditional {
-  margin-top: 8px;
-}
-
-#quickAddBox .bold {
+.bold {
   font-weight: bold;
   font-size: 17px;
 }
@@ -166,10 +387,12 @@ core-icon-button:focus{
   border-bottom: none;
   font-size: 14px;
 }
-#quickAddBox input {
+
+input {
   border-bottom: none;
 }
-#quickAddBox textarea {
+
+textarea {
   border-bottom: none;
   width: 100%;
   line-height: 1.2em;
@@ -179,10 +402,17 @@ core-icon-button:focus{
   float: right;
 }
 
-#myGroupsContainer{
-  padding-bottom: 100px;
+
+material-button.material-button-fab.material-button-fab-bottom-right {
+      top: auto;
+      right: 56px;
+      bottom: 28px;
+      left: auto;
+      position: fixed; 
+      margin-right: 15px;
 }
 
+/* Styles for Cards */
 .cardholder {
   display: inline-block;
   vertical-align: top;
@@ -199,48 +429,225 @@ core-icon-button:focus{
   max-width: none;
 }
 
-#addGroupCardButton {
-  transition: top ease-in-out 0.3s;
-  transition: background-color ease-in-out 0.3s;
-}
-#addGroupCardButton{
-  display: block;
-  position: fixed;
-  width: 56px;
-  height: 56px;
-  right: 24px;
-  bottom: 24px;
-  z-index: 5;
-  background-color: rgba(82, 110, 156, 0.8);
-}
-/* Fade in when you focus: */
-#addGroupCardButton:focus, #addGroupCardButton:hover{
-  background-color: rgba(82, 110, 156, 1);
-}
-/* Spin the cross button when you focus: */
-#addGroupCardButton core-icon{
-  color: white;
-  transition: transform ease-in-out 0.6s;
-}
-#addGroupCardButton:focus core-icon, #addGroupCardButton:hover core-icon{
-  transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -webkit-transform: rotate(360deg);
+.mainCard {
+  display: inline-block;
+  vertical-align: top;
+  min-height: 100px;
+  min-width: 300px;
+  max-width: 300px;
+  padding: 16px 24px;
 }
 
-material-item {
-  align-items: flex-start;
+.pollOriginatorLine {
+  margin: 7px 0 14px 0;
+}
+
+.pollTitleLine {
+  margin: 0 0 14px 0;
+}
+
+.cardContentContainer {
+  margin-bottom: 30px;
+  max-height:300px;
+  overflow:hidden;
+}
+
+.votes {
+  background-color: #d19b9b;
+}
+
+.running {
+  background-color: #92e4c9;
+}
+
+.completed,
+.voted {
+  background-color: #c9d1ff;
+}
+
+.unstarted {
+  background-color: #ffffff;
+}
+
+.pollDetails {
+  font-size: 12px;
+}
+
+.pollReturns {
+  height: 100px;
+}
+
+.optionCounts {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  float: left;
+  max-width: 60%;
+}
+
+.options table {
+  margin-bottom: 0;
+}
+
+.options table td {
+  padding: 3px;
+  border-top: none;
+  vertical-align: middle;
+}
+
+.previewCheckbox {
+  width: 30px;
+}
+
+.pieChartContainer {
+  height: 100px;
+  width: 100px;
+  float: right;
+}
+
+div .cardMenuBar {
+  background-color: rgba(0, 0, 0, 0.3);
+  min-height: 40px;
+  max-height: 40px;
+  margin: -24px -24px -16px -24px;
+  padding: 5px; 
+  vertical-align: middle;
+}
+
+.startPollButton,
+.stopPollButton {
+  margin-top: 6px;
+}
+
+.overflowMenuButton {
+  margin-top: 6px;
+  float: right; 
+}
+
+.overflowMenu {
+  z-index: 2;
+  position: absolute;
+  margin-right: 10px;
+  margin-top: -10px;
+  right: 0;
+  top: 100%;
+  padding: 16px 24px;
+}
+
+.overflowMenu a {
   cursor: pointer;
+  line-height: 32px;
 }
 
-/* COPIED FROM JIMMY'S CODE FOR POLLMASTER DROPDOWN AND EDITED
- * This should eventually be a component
- */
+/* Card Zoom */
+#dialogLayout {
+  position: relative;
+}
+
+.material-dialog-container material-dialog .dialog-content {
+  min-width: 400px;
+  max-width: 400px;
+  padding: 16px 24px;
+  overflow: hidden;
+}
+
+.optionsLine.focused {
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+
+.optionsInput {
+  display: inline-block !important;
+}
+
+#addOptionInput {
+  line-height: 15px;
+  margin: 5px 0;
+}
+
+.newOptionWrapper {
+  margin: 16px 0;
+}
+
+.newOptionWrapper.focused {
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+
+material-checkbox {
+  margin: 1px;
+}
+
+#addOptionInput {
+  background-image: url(../material-icons/icons/system_icons/content/res/1x_web/ic_add_18dp.png);
+  background-repeat: no-repeat;
+  text-indent: 20px;
+}
+
+material-checkbox[disabled] {
+  opacity: 0.3;
+}
+
+.dialog-menubar-actions {
+  display: inline;
+  float: left;
+}
+
+.dialog-menubar-actions .material-button-icon {
+  height: 32px;
+  width: 32px;
+  line-height: 43px;
+}
+
+.dialog-options-container {
+  border: 1px solid grey;
+  border-radius: 6px;
+  padding: 8px;
+  margin: 1px;
+}
+
+.dialog-options-container input {
+  display: inline;
+  color: #444;
+  font-family: 'RobotoDraft', 'Helvetica Neue', Helvetica, Arial;
+  height: 100%; 
+  border: none;
+}
+
+.dialog-options-options {
+  margin-right: 7px;
+  margin-left: 20px; 
+  float: left;
+}
+
+.dialog-options-poll-ends {
+  margin-left: 7px;
+  margin-right: 14px;
+  float: right;
+}
+
+.dialog-options-save-options {
+  margin-top: 7px;
+  margin-bottom: 6px;
+  float: left;
+}
+
+.dialog-options-button-options {
+  margin-top: 7px;
+  margin-left: 7px;
+}
+
+.dialog-options-button-options label {
+  display: inline-block;
+}
 
 .custom-dropdown {
   position: relative;
   display: inline-block;
   vertical-align: middle;
+  margin-top: 16px;
+  margin-left: 30px;
 }
 
 .custom-dropdown select {
@@ -254,11 +661,8 @@ material-item {
   text-indent: 0.01px;
   text-overflow: '';
   -webkit-appearance: button;
-  border-bottom: 2px solid #B1AFAF;  
-}
-.custom-dropdown select{
-  text-transform: capitalize;
-  width: 100%;
+  border-bottom: 2px solid #B1AFAF;
+  max-width: 300px;  
 }
 .custom-dropdown::before,
 .custom-dropdown::after {
@@ -274,8 +678,7 @@ material-item {
   font-size: .625em;
   line-height: 1;
   right: 1.2em;
-  top: 50%;
-  margin-top: -.5em;
+  margin-top: 8px;
 }
 
 .custom-dropdown::before {
@@ -284,7 +687,6 @@ material-item {
   top: 0;
   bottom: 0;
   border-radius: 0 3px 3px 0;
-  border-bottom: 2px solid #B1AFAF;
 }
 
 .custom-dropdown::before {
@@ -299,158 +701,163 @@ material-item {
   font-size: 1em;
 }
 
-
-/* 
- * 
- * EVERYTHIGN BELOW HERE IS COPIED FROM ANGULAR/MATERIAL DOCS.CSS
- * 
- */
-
-/*
-
-[layout-fill] {
-  margin: 0;
-  height: 100%;
-  width: 100%; }
-
- material-content, .material-content {
-  display: block;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch; }
-  material-content[scroll-y], .material-content[scroll-y] {
-    overflow-y: auto;
-    overflow-x: hidden; }
-  material-content[scroll-x], .material-content[scroll-x] {
-    overflow-x: auto;
-    overflow-y: hidden; }
-  material-content.material-content-padding, .material-content.material-content-padding {
-    padding: 20px; }
-
-material-toolbar {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  position: relative;
-  z-index: 2;
-  font-size: 1.3em;
-  min-height: 64px;
-  width: 100%; }
-  material-toolbar.material-tall {
-    height: 192px; }
-  material-toolbar.material-medium-tall {
-    height: 88px; }
-    material-toolbar.material-medium-tall .material-toolbar-tools {
-      height: 48px; }
-  material-toolbar .material-indent {
-    margin-left: 64px; }
-
-.material-toolbar-tools {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  align-items: center;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: horizontal;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  width: 100%;
-  height: 64px;
-  font-size: inherit;
-  font-weight: normal;
-  padding: 0 10px;
-  margin: 0; }
-  .material-toolbar-tools > * {
-    font-size: inherit;
-    margin: 0 8px; }
-  .material-toolbar-tools h2, .material-toolbar-tools h3 {
-    font-weight: normal; }
-  .material-toolbar-tools a {
-    color: inherit;
-    text-decoration: none; }
-  .material-toolbar-tools material-button {
-    font-size: 16px; }
-*/
-material-toolbar {
-  min-height: 48px;
-  height: 48px;
-}
-.menu-icon {
+#ballotPreview {
+  box-sizing: border-box;
+  min-width: 300px;
+  max-width: 300px;
+  z-index: -1;
+  position: absolute;
+  right: -310px;
   top: 0;
-  margin-top: -14px;
-  margin-left: 18px;
-  margin-right: 9px;
-  cursor: pointer;
+  padding: 16px 24px;
 }
-#toolTitle {
-  margin-bottom: 20px;
-  font-size: 15px;
-  margin-left: 0px;
+
+/* Results Card Styles */
+#statsBox {
+  float: left;
+  width: 27%;
+  border-right: 1px solid grey;
 }
-.viewButton {
-  border: 1px solid rgba(0,0,0,0.2);
-  height: 26px;
-  width: 35px;
-  margin-top: 3px;
+
+#resultsBox {
+  float: right;
+  width: 70%;
 }
-.viewButton:hover {
-  opacity: 1;
+
+.tableTitle {
+  font-size: 14px;
 }
-#streamButton:hover {
-  background: none;
+
+#pollResultsTable {
+  width: 100%;
+  font-size: 12px;
 }
-#quiltButton:hover {
-  background: none;
+
+#pollStatsTable {
+  width: 75%;
+  font-size: 12px;
 }
-.viewButton button img {
-  margin-top: -3px;
-  margin-left: -1px;
+
+#pollCommentsTable table {
+  font-size: 12px;
+  margin-bottom: 0;
 }
-.appVersion p {
-  color: slategray;
-  background-color: white;
-  margin-bottom: 0px;
-  padding: 10px;
+
+.chatCell {
+  width: 80px;
 }
-.material-dialog-container material-dialog {
-  width:  50%;
+
+#backToResultsButton {
+  margin-left: 16px;
 }
+
+.bigPieChartContainer {
+  height: 200px;
+  width: 200px;
+  float: right;
+}
+
+material-dialog div .cardMenuBar {
+  margin: 0;
+  line-height: 17px;
+}
+
+.pollEndsDate {
+  padding-top: 5px;
+  border-style: dotted;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  border-width: thin;
+  margin-top: -25px;
+  margin-bottom:30px;
+  font-size: 0.7em;
+  opacity: 0.7;
+}
+
+/* Styles for Material Tabs */
+.tabs-content .material-view {
+    background-color: #fff;
+    height: 100%;
+}
+
+div.infoBar input {
+    display: inline-block;
+}
+
+div.infoBar {
+    margin-left: 20px;
+    height: 75px;
+    font-size: .8em;
+}
+
+material-tabs {
+  width: auto;
+  margin: -20px -20px 0 -20px;
+}
+material-tabs .tabs-header .tabs-header-items {
+  background-color: #ffeb3b;
+}
+
+material-tab material-tab-label {
+  color: #000;
+  opacity: 0.5;
+}
+
+material-tab material-tab-label.active {
+  color: #000;
+  opacity: 1.0;
+}
+
+a.active {
+  color: #000 !important;
+  opacity: 1.0; 
+}
+
 material-ink-bar {
-  background: black;
+  background: #000;
 }
-material-checkbox {
-  margin:0px;
+
+material-tabs .tabs-content {
+    height: 100%;
 }
-.tab1 {
-  padding:15px;
+
+material-card {
+  margin-top: 16px;
+  background-color: #ffff8d;
 }
-material-checkbox:focus .material-label {
-  border-color:transparent;
+.filterDropdown {
+  margin-right: 30zpx;
 }
-.checkLabel {
-  margin: 0px 5px;
-  margin-top: 5px;
+
+ul#filters {
+  display:none;
 }
-.options p{
-  margin:0px;
-  font-size: 13px;
+
+/* Styles for Material Voting Booth */
+#ballotCard {
+  max-width: 300px;
+  min-width: 300px;
+}
+
+#ballotTitle {
+  margin: 14px 0 10px 0;
+}
+
+#ballotOptionsContainer {
+  margin-bottom: 14px;
+}
+
+.ballotOption {
+  line-height: 48px;
+}
+
+#commentInput {
+  background-color: #fff;
+}
+.chart {
+ width: 100px;
+ height: 100px;
 }
 ::-webkit-scrollbar {  
     width: 12px; 
@@ -464,62 +871,68 @@ material-checkbox:focus .material-label {
 ::-webkit-scrollbar-thumb:hover {  
     background-color: #aaa;  
 }
-.inputInside input {
-  border: 1px solid slategray;
+
+material-toolbar {
+  min-height: 48px;
+  height: 48px;
+}
+
+.toolbarTitle {
+  margin-bottom: 15px;
+  font-size: 14px;
+  margin-left: 0px;
+  color: #fff;
+}
+
+.viewButton {
+  height: 26px;
   width: 35px;
-  text-align: center;
+  margin-top: 4px;
 }
-.alliance {
-  background-color: #5B391E !important;
-  color: white;
+.viewButton:hover {
+  opacity: 1;
 }
-material-checkbox .material-icon {
-  margin-top: 3px;
+
+.menu-icon {
+  top: 0;
+  height: 48px;
+  margin-top: 8px;
+  margin-left: 18px;
+  margin-right: 9px;
+  cursor: pointer;
 }
-material-checkbox {
-  margin: 1px;
+#optionsQuickNewPoll .menuDrawerButton {
+  height: 25px;
+  width: 30px;
+  margin-right: 5px;
 }
-.newRuleWrapper {
-margin: 16px 0;
+#optionsQuickNewPoll {
+  margin: 20px;
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
-#addRuleInput {
-  background-image: url(../material-icons/icons/system_icons/content/res/1x_web/ic_add_18dp.png);
-  background-repeat: no-repeat;
-  text-indent: 20px;
+#quickBallotPreview {
+  box-sizing: border-box;
+  min-width: 300px;
+  max-width: 300px;
+  padding: 16px 24px;
 }
-#addRuleInput {
-  line-height: 15px;
-  margin: 5px 0;
+#pollsContainer {
+  padding: 0px;
+  height: 100%;
 }
-.rulesLine.focused {
-  border-top: 1px solid lightgrey;
-  border-bottom: 1px solid lightgrey;
+.ui-timepicker-wrapper {
+  height: 125px;
 }
-.newRuleWrapper.focused {
-  border-top: 1px solid lightgrey;
-  border-bottom: 1px solid lightgrey;
+#templatesContainer {
+  height: 100%;
+  padding-right: 5px;
 }
-.ruleInput {
-  height: 28px;
-  width: 35px;
-  text-align: center;
-  border: 1px solid gray !important;
-  margin: 0px 5px;
-  display: inline-block;
+#quickAddButton:hover {
+  border-color: rgb(75,75,75);
 }
-.rulesLine p {
-  margin: 0px;
-  display: inline-block;
-  border-width: 0px 0px 1px 0px;
-  line-height: 30px;
-  font-size: 0.85em;
-  vertical-align: baseline;
-  color: black;
-  border-bottom: 1px solid rgb(233, 233, 233);  
-}
-textarea {
-  border-bottom-color: rgba(0,0,0,0.2);
-}
-.groupCard div p {
-  overflow: hidden;
+#quickStartButton:hover {
+  border-color: rgb(75,75,75);
+.chatLink {
+  cursor: pointer;
 }

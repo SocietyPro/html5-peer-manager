@@ -1,162 +1,126 @@
-var Cambrian = Cambrian || {};
-var japi;
-if(Cambrian.JAPI !== undefined && !Cambrian.isMockCambrian){
-  console.log('Instantiating japi');
-  japi = Cambrian.JAPI();
-} else {
-  // use mocks
-  console.log('Instantiating mock japi');
-  japi = Cambrian.mockJAPI();
-}
+var app = angular.module("app", ["ngMaterial"]);
 
-//appModule = angular.module("app", ['eee-c.angularBindPolymer'])
-
-appModule = angular.module("app", ['ngMaterial'])
-.factory("menu", ['$rootScope', function ($rootScope) {
+app.factory("menu", ['$rootScope', function ($rootScope) {
   var self;
-  var groups = ['myGroups', 'myPeerLists'];
+  var filters = [{ filter: 'All', color: '#000' }, 
+                 { filter: 'Vote', color: '#a48623' },
+                 { filter: 'Running', color: '#458B74' },
+                 { filter: 'Unstarted', color: '#D2D6DF' },
+                 { filter: 'Completed', color: '#40505E' }];
 
   return self = {
-    groups: groups,
+    filters: filters,
 
-    selectGroup: function(group) {
-      self.currentGroup = group;
-      $rootScope.listContains = group;
+    selectFilter: function(filter) {
+      self.currentFilter = filter;
+      if (filter.filter === "All") {
+        $rootScope.pollFilter = undefined;
+      } else if (filter.filter === "Running") {
+        $rootScope.pollFilter = "started";
+      } else if (filter.filter === "Completed") {
+        $rootScope.pollFilter = "stopped";
+      } else {
+        $rootScope.pollFilter = filter.filter.toLowerCase();
+      };
     },
-    isGroupSelected: function (group) {
-      return self.currentGroup === group;
+
+    isFilterSelected: function (filter) {
+      return self.currentFilter === filter;
     }
   };
+}]);
 
-}])
-.controller("appCtrl", function ($scope, $materialSidenav, $materialDialog, menu, $rootScope) {
-  
+app.directive('ngReallyClick', [function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                var message = attrs.ngReallyMessage;
+                if (message && confirm(message)) {
+                    scope.$apply(attrs.ngReallyClick);
+                }
+            });
+        }
+    }
+}]);
+
+app.controller("appCtrl",function ($scope, $materialSidenav, $materialDialog, menu, roleAll, roleDestroy, roleChange){
+
   $scope.menu = menu;
-  $scope.menu.selectGroup(menu.groups[0]);
-  $scope.myPeers = japi.me.peers;
-  var groups = japi.me.groups;
-  $scope.myGroups = [];
-  for (var i = 0; i < groups.length; i++) {
-    if (groups[i].type == "channel") {
-      $scope.myGroups.push(groups[i]);
-    }
-  };
-  $scope.myPeerLists = japi.me.peerLists;
-  $scope.inputClick = false;
-
-  for (var i=0; i < $scope.myGroups.length; i++) {
-    $scope.myGroups[i].isActive = false;
-  };
-
-  /*
-  for (var i=0; i < $scope.myPeerLists.length; i++) {
-    $scope.myGroups.isActive[i] = false;
-  };
-  */
-
-  $(document).mouseup(function (e) {
-    var container = $("#quickAddBox");
-    if (!container.is(e.target) // if the target of the click isn't the container...
-        && container.has(e.target).length === 0) // ... nor a descendant of the container
-    {
-      var exists = ($('#quickAddBox').length === 1)
-      if (exists) {
-        $scope.$apply(function() {
-          $scope.inputClick = false;
-          $scope.newGroupType = "";
-          $scope.newGroupTitle = "";
-          $scope.quickAddForm.$setPristine();
-        });       
-      }
-    }
-  });
+  $scope.roles = roleAll();
+  console.log($scope.roles);
 
   $scope.toggleMenu = function () {
     $materialSidenav('left').toggle();
   };
-
-  $scope.listView = "quilt";
-
-  $scope.streamView = function () {
-    $scope.listView = "stream";
+  
+  $scope.overflowToggle = function (role) {
+  	role.of = !role.of;
   };
 
-  $scope.quiltView = function () {
-    $scope.listView = "quilt";
-  };
-
-  $scope.overflowToggle = function (group) {
-    group.overflow = !group.overflow;
-  };
-
-  $scope.newGroup = function () {
-    //var groupToAdd = { name: $scope.newGroupTitle, groupType: $scope.newGroupType, members: []};
-    if ($scope.newGroupType) {
-      $scope.newGroupType = $scope.groupTypes[0];
-    }
-    var groupToAdd = japi.groups.build('channel');
-    groupToAdd.name = $scope.newGroupTitle;
-    groupToAdd.type = "channel";
-    groupToAdd.members = [];
-    $scope.myGroups.push(groupToAdd);
-    $scope.newGroupTitle = "";
-    $scope.quickAddForm.$setPristine();
-    $scope.dialog(null, groupToAdd);
-  };
-
-  $scope.duplicateGroup = function (group) {
-    //var buildGroup = angular.copy(group);
-    var buildGroup = japi.groups.build(group);
-    console.log(buildGroup);
-    buildGroup.name = buildGroup.name + " (Duplicate)";
-    buildGroup.overflow = false;
-    $scope.myGroups.push(buildGroup);
-    group.overflow = false;
-  };
-
-  $scope.deleteGroup = function (group) {
-    var confirmed = confirm('Are you sure you want to permanently remove the group:\n'+(group.name || ""));
-    if(!confirmed){ return }
-    var index = $scope.myGroups.indexOf(group);
-
-    if (index > -1) {
-      $scope.myGroups.splice(index, 1);  
-    }
-    group.overflow = false;
-    group.destroy();
-  };
-
-  $scope.dialog = function (e, group) {
+  $scope.switchRole = function (e,k,role) {
     $materialDialog({
-      templateUrl: 'partials/editGroupCard.tmpl.html',
-      targetEvent: e,
-      controller: ['$scope', '$hideDialog', function ($scope, $hideDialog) {
-        $scope.group = group;
-        $scope.japi = japi;
-        $scope.newGroupType = group.type;
-        console.log('Setting dialog $scope.newGroupType to ',group.type)
-        $scope.groupTypes;
-        $scope.newGroupTitle = group.name;
+        templateUrl: 'partials/editPeer.tmpl.html',
+        targetEvent: e,
+        controller: ['$scope', '$rootScope', '$hideDialog', function ($scope, $rootScope, $hideDialog) {
+          
+          $scope.role = role;
 
-        // Filter to display only nonMembers:
-        $scope.nonMembers = function(peer){
-          for(var i=0; i<$scope.group.members.length; i++){
-            if(angular.equals($scope.group.members[i], peer)){ // Peer was found
-              return false; // this member should be hidden
-            }
-          }
-          return true; // this nonmember should be shown
-        };
-        $scope.close = function () {
-          $hideDialog();
-        };
+          $scope.close = function () {
+            $hideDialog();
+          };
 
-        $scope.save = function (group) {
-          group.save()
-          $hideDialog();
-        };
-      }]
+          $scope.createRole = function (roleName) {
+            role = roleCreate(roleName);
+            $rootScope.$broadcast('roleAdded', {role: role});
+            $hideDialog();
+          };
+        }]
     });
+  };
+
+  $scope.destroyRole = function (roleIndex) {
+    if (roleDestroy(roleIndex)) {
+      $scope.roles.splice(roleIndex, 1);
+    }
+  };
+
+  $scope.$on('roleAdded', function (scope, args) {
+    addNewRole(args.role);
+  });
+
+  $scope.addRoleDialog = function (e) {
+    $materialDialog({
+        templateUrl: 'partials/addRole.tmpl.html',
+        targetEvent: e,
+        controller: ['$scope', '$rootScope', '$hideDialog', 'roleCreate', function ($scope, $rootScope, $hideDialog, roleCreate) {
+        
+          $scope.close = function () {
+            $hideDialog();
+          };
+
+          $scope.createRole = function (roleName) {
+            role = roleCreate(roleName);
+            $rootScope.$broadcast('roleAdded', {role: role});
+            $hideDialog();
+          };
+        }]
+    });
+  };
+
+  $scope.safeApply = function(fn) {
+    var phase = this.$root.$$phase;
+    if(phase == '$apply' || phase == '$digest') {
+      if(fn && (typeof(fn) === 'function')) {
+        fn();
+      }
+    } else {
+      this.$apply(fn);
+    }
+  };
+
+  function addNewRole (role) {
+    $scope.roles.push(role);
   };
 
 });
